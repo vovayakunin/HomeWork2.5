@@ -3,28 +3,48 @@ import java.util. Objects;
 public class Employee {
     private String firstName;
     private String lastName;
+    private int department;
+    private double salary;
+
 
     public Employee(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.department = department;
+        this.salary = salary;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
     public String getLastName() {
         return lastName;
     }
 
-    public String getFullName() {return firstName + " " + lastName; }
+    public String getFirstName() {return firstName; }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     @Override
@@ -40,12 +60,8 @@ public class Employee {
         return Objects.hash(firstName, lastName);
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public int getDepartament() {
+        return 0;
     }
 }
 

@@ -7,50 +7,59 @@ import exception.EmployeeStorageIsFullException;
 import model.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 
 public class EmployeeService {
-    private final Map<String, Employee> employees = new HashMap<>();
     private static final int MAX_SIZE = 5;
-    private Employee employee;
+    private final Map<String, Employee> employees = new HashMap<>(MAX_SIZE);
 
-    public Employee add(String firstName, String lastName) {
-        if (employees.size()>= MAX_SIZE){
+    public EmployeeService(){
+        Employee employee1 = new Employee("ivan", "ivanov");
+        Employee employee2 = new Employee("oleg", "olegov");
+        Employee employee3 = new Employee("marina", "sergeeva");
+        Employee employee4 = new Employee("olga", "ivanova");
+        employees.put(createKey(employee1),employee1);
+        employees.put(createKey(employee2),employee2);
+        employees.put(createKey(employee3),employee3);
+        employees.put(createKey(employee4),employee4);
+    }
+
+
+
+    public Collection<Employee> getAll() {return employees.values();}
+
+    public Employee add(Employee employee) {
+        if (employees.size() >= MAX_SIZE) {
             throw new EmployeeStorageIsFullException();
         }
-        Employee employeeToAdd = new Employee(firstName, lastName);
-        if (employees.containsKey(employee.getFullName())){
+        if (employees.containsKey(createKey(employee))) {
             throw new EmployeeAlreadyAddedException();
         }
 
-        employees.put(employee.getFullName(),employee);
+        employees.put(createKey(employee), employee);
         return employee;
     }
 
-    public Employee remove(String firstName, String lastName){
-        Employee employeeToRemove = new Employee(firstName, lastName);
-        if (!employees.containsKey(employee.getFullName())){
-            throw new EmployeeNotFoundException();
-        }
-        employees.remove(employee.getFullName());
-        return employeeToRemove;
-    }
-
-    public Employee find(String firstName, String lastName){
-        Employee employee = new Employee(firstName, lastName);
-        if (employees.containsKey(employee.getFullName())) {
-            return employees.get(employee.getFullName());
-            }
+   public Employee find(String firstName, String lastName){
+    Employee employee = employees.get(createKey(firstName,lastName));
+    if (employee == null) {
         throw new EmployeeNotFoundException();
     }
+    return employee;
+   }
 
-    public Collection<Employee> findAll() {
-        return Collections.unmodifiableCollection(employees.values());
-    }
+ public Employee remove(String firstName, String lastName){
+    return employees.remove(createKey(firstName, lastName));
+ }
+ private static String createKey(Employee employee){
+    return createKey(employee.getFirstName(), employee.getLastName());
 }
-
-
+ private static String createKey(String firstName, String lastName) {
+    return (firstName + lastName).toLowerCase();}
+}
 
 
