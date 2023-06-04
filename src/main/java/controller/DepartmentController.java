@@ -29,6 +29,7 @@ public class DepartmentController {
     public List<Employee> getAll(@RequestParam("departmentId") int department){
         return departmentService.getAll(department);
     }
+    @GetMapping("/all")
     private Map<Integer,List<Employee>> getAll() {
         return departmentService.getAll();
     }

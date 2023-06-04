@@ -19,14 +19,14 @@ public class DepartmentService {
        return employeeService.getAll().stream()
                 .filter(employee -> employee.getDepartament() == department)
                 .max(Comparator.comparingDouble(Employee::getSalary))
-                .orElseThrow(() -> new EmployeeNotFoundException());
+                .orElseThrow(EmployeeNotFoundException::new);
 
     }
     public Employee getEmployeeWithMinSalary(int department) {
         return employeeService.getAll().stream()
                 .filter(employee -> employee.getDepartament() == department)
-                .max(Comparator.comparingDouble(Employee::getSalary))
-                .orElseThrow(() -> new EmployeeNotFoundException());
+                .min(Comparator.comparingDouble(Employee::getSalary))
+                .orElseThrow(EmployeeNotFoundException::new);
 
     }
     public List<Employee> getAll(int department) {
