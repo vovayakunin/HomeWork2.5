@@ -17,7 +17,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @GetMapping("/add")
-    public Employee add(String firstName, String lastName,int department, double salary) {
+    public Employee add(String firstName, String lastName,int department, double salary) throws InterruptedException {
         return employeeService.add(new Employee(firstName, lastName));
     }
     @GetMapping("/remove")
