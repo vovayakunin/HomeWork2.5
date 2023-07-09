@@ -19,14 +19,6 @@ public class EmployeeService {
     private final Map<String, Employee> employees = new HashMap<>(MAX_SIZE);
 
     public EmployeeService() {
-        Employee employee1 = new Employee("ivan", "ivanov");
-        Employee employee2 = new Employee("oleg", "olegov");
-        Employee employee3 = new Employee("marina", "sergeeva");
-        Employee employee4 = new Employee("olga", "ivanova");
-        employees.put(createKey(employee1), employee1);
-        employees.put(createKey(employee2), employee2);
-        employees.put(createKey(employee3), employee3);
-        employees.put(createKey(employee4), employee4);
     }
 
 
@@ -34,19 +26,13 @@ public class EmployeeService {
         return employees.values();
     }
 
-    public Employee add(Employee employee) throws InterruptedException {
-        if (StringUtils.isAlpha(employee.getFirstName())
-                || !StringUtils.isAlpha(employee.getLastName())) {
-            throw new InterruptedException();
-        }
+    public Employee add(Employee employee)  {
         if (employees.size() >= MAX_SIZE) {
             throw new EmployeeStorageIsFullException();
         }
         if (employees.containsKey(createKey(employee))) {
             throw new EmployeeAlreadyAddedException();
         }
-        correctCase(employee);
-
         employees.put(createKey(employee), employee);
         return employee;
     }
@@ -74,6 +60,9 @@ public class EmployeeService {
     private static void correctCase(Employee employee) {
         employee.setFirstName(StringUtils.capitalize((employee.getFirstName().toLowerCase())));
         employee.setLastName(StringUtils.capitalize((employee.getLastName().toLowerCase())));
+    }
+
+    public void add() {
     }
 }
 
