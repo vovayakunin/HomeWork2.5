@@ -23,7 +23,7 @@ import static org.springframework.test.util.AssertionErrors.assertFalse;
 
 @ExtendWith(MockitoExtension.class)
 public class DepartmentServiceTest {
-   private void assertEquals(double expected, double actual) {
+   public void assertEquals(double expected, double actual) {
     }
     private void assertFalse(boolean contains) {
    }

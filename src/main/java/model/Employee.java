@@ -14,18 +14,14 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(String firstName, String lastName, int department, double salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.department = department;
-        this.salary = salary;
-    }
 
     public String getLastName() {
         return lastName;
     }
 
-    public String getFirstName() {return firstName; }
+    public String getFirstName() {
+        return firstName;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -66,8 +62,10 @@ public class Employee {
         return Objects.hash(firstName, lastName);
     }
 
+
     public int getDepartament() {
-        return 0;
+        return getDepartment();
     }
 }
+
 

@@ -49,20 +49,17 @@ public class EmployeeService {
         return employees.remove(createKey(firstName, lastName));
     }
 
-    private static String createKey(Employee employee) {
+    public static String createKey(Employee employee) {
         return createKey(employee.getFirstName(), employee.getLastName());
     }
 
-    private static String createKey(String firstName, String lastName) {
+    public static String createKey(String firstName, String lastName) {
         return (firstName + lastName).toLowerCase();
     }
 
-    private static void correctCase(Employee employee) {
+    public static void correctCase(Employee employee) {
         employee.setFirstName(StringUtils.capitalize((employee.getFirstName().toLowerCase())));
         employee.setLastName(StringUtils.capitalize((employee.getLastName().toLowerCase())));
-    }
-
-    public void add() {
     }
 }
 
